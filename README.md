@@ -7,8 +7,7 @@
 [[`arXiv`](https://arxiv.org/abs/2305.02981)] [[`BibTeX`](#CitingStyleMatte)]
 
 <p align="left">
-  <img src="assets/fg.gif" width="40%" height="50%" />
-  <img src="assets/matte.gif" width="40%" height="50%" />
+  <img src="assets/merged.gif" width="100%" height="50%" />
 </p><br/>
 
 <!-- <div align="center">
@@ -26,7 +25,7 @@ To use our pretrained models, download them from [gdrive](https://drive.google.c
 | State file                           | Size     | Where to place                                   |
 |-----------------------------------|----------|-------------------------------------------|
 | stylematte_pure.pth    | 133.6 MB  |  `stylematte/checkpoints/`        |
-| stylematte_synth.pth | 38.7 GB  |   `stylematte/checkpoints/` |
+| stylematte_synth.pth | 133.6 MB  |   `stylematte/checkpoints/` |
 | animals.pkl    | 300.5 MB  |    `stylegan3`      |
 | humans.pkl    | 281.1 MB  |    `stylegan3`      |
 
