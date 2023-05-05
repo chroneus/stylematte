@@ -164,3 +164,11 @@ stylematte/checkpoints/stylemath_pure.pth
 stylematte/test/*.png
 stylematte/test/*.jpg
 stylematte/checkpoints/*.pth
+stylematte/*.pkl
+stylematte/*.pth
+stylegan3/*.pkl
+imgs
+.DS_Store
+stylegan3/.DS_Store
+stylegan3/imgs/
+stylegan3/out.gif
