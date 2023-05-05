@@ -1,0 +1,26 @@
+experiment_name: "test"
+dataset_to_use: "AM2k"
+checkpoint_dir: "checkpoints"
+checkpoint: "stylematte_pure.pth"
+datasets:
+    bg: "datasets/matting/background/testval/"
+    p3m10k: 
+        path: "datasets/matting/P3M-10k"
+        transform: "hard"
+    p3m10k_test:
+        VAL500P:
+            ROOT_PATH: "P3M-500-P/"
+            ORIGINAL_PATH: "P3M-500-P/blurred_image/"
+            MASK_PATH: "P3M-500-P/mask/"
+            TRIMAP_PATH: "P3M-500-P/trimap/"
+            SAMPLE_NUMBER: 500
+        VAL500NP:
+            ROOT_PATH: "P3M-500-NP/"
+            ORIGINAL_PATH: "P3M-500-NP/original_image/"
+            MASK_PATH: "P3M-500-NP/mask/"
+            TRIMAP_PATH: "P3M-500-NP/trimap/"
+            SAMPLE_NUMBER: 500
+    MAX_SIZE_H: 1600
+    MAX_SIZE_W: 1600
+    image_crop: 800
+    use_file_cache: False 

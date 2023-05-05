@@ -1,9 +1,9 @@
 import torch
 import numpy as np
-import torch.nn.functional as F
 import torch
 
-def gauss_kernel(size=5, device=torch.device('cpu'), channels=1):
+
+def gauss_kernel(device=torch.device('cpu'), channels=1):
     kernel = torch.tensor([[1., 4., 6., 4., 1],
                            [4., 16., 24., 16., 4.],
                            [6., 24., 36., 24., 6.],
@@ -12,24 +12,33 @@ def gauss_kernel(size=5, device=torch.device('cpu'), channels=1):
     kernel /= 256.
     kernel = kernel.repeat(channels, 1, 1, 1)
     kernel = kernel.to(device)
+
     return kernel
+
 
 def downsample(x):
     return x[:, :, ::2, ::2]
 
+
 def upsample(x):
-    cc = torch.cat([x, torch.zeros(x.shape[0], x.shape[1], x.shape[2], x.shape[3], device=x.device)], dim=3)
+    cc = torch.cat([x, torch.zeros(x.shape[0], x.shape[1],
+                   x.shape[2], x.shape[3], device=x.device)], dim=3)
     cc = cc.view(x.shape[0], x.shape[1], x.shape[2]*2, x.shape[3])
-    cc = cc.permute(0,1,3,2)
-    cc = torch.cat([cc, torch.zeros(x.shape[0], x.shape[1], x.shape[3], x.shape[2]*2, device=x.device)], dim=3)
+    cc = cc.permute(0, 1, 3, 2)
+    cc = torch.cat([cc, torch.zeros(x.shape[0], x.shape[1],
+                   x.shape[3], x.shape[2]*2, device=x.device)], dim=3)
     cc = cc.view(x.shape[0], x.shape[1], x.shape[3]*2, x.shape[2]*2)
-    x_up = cc.permute(0,1,3,2)
+    x_up = cc.permute(0, 1, 3, 2)
+
     return conv_gauss(x_up, 4*gauss_kernel(channels=x.shape[1], device=x.device))
+
 
 def conv_gauss(img, kernel):
     img = torch.nn.functional.pad(img, (2, 2, 2, 2), mode='reflect')
     out = torch.nn.functional.conv2d(img, kernel, groups=img.shape[1])
+
     return out
+
 
 def laplacian_pyramid(img, kernel, max_levels=3):
     current = img
@@ -41,17 +50,22 @@ def laplacian_pyramid(img, kernel, max_levels=3):
         diff = current-up
         pyr.append(diff)
         current = down
+
     return pyr
+
 
 class LaplacianLoss(torch.nn.Module):
     def __init__(self, max_levels=3, channels=1, device=torch.device('cuda')):
         super(LaplacianLoss, self).__init__()
         self.max_levels = max_levels
         self.gauss_kernel = gauss_kernel(channels=channels, device=device)
-        
+
     def forward(self, input, target):
-        pyr_input  = laplacian_pyramid(img=input, kernel=self.gauss_kernel, max_levels=self.max_levels)
-        pyr_target = laplacian_pyramid(img=target, kernel=self.gauss_kernel, max_levels=self.max_levels)
+        pyr_input = laplacian_pyramid(
+            img=input, kernel=self.gauss_kernel, max_levels=self.max_levels)
+        pyr_target = laplacian_pyramid(
+            img=target, kernel=self.gauss_kernel, max_levels=self.max_levels)
+
         return sum(torch.nn.functional.l1_loss(a, b) for a, b in zip(pyr_input, pyr_target))
 
 
@@ -60,50 +74,56 @@ class DiceLoss(torch.nn.Module):
         super(DiceLoss, self).__init__()
 
     def forward(self, inputs, targets, smooth=1):
-            
-        
-        #flatten label and prediction tensors
+
+        # flatten label and prediction tensors
         inputs = inputs.view(-1)
         targets = targets.view(-1)
-        
-        intersection = (inputs * targets).sum()                            
-        dice = (2.*intersection + smooth)/(inputs.sum() + targets.sum() + smooth)  
-        
+
+        intersection = (inputs * targets).sum()
+        dice = (2.*intersection + smooth) / \
+            (inputs.sum() + targets.sum() + smooth)
+
         return 1 - dice
 
 
-
-def calculate_sad_mse_mad(predict_old,alpha,trimap):
+def calculate_sad_mse_mad(predict_old, alpha, trimap):
     predict = np.copy(predict_old)
     pixel = float((trimap == 128).sum())
     predict[trimap == 255] = 1.
-    predict[trimap == 0  ] = 0.
+    predict[trimap == 0] = 0.
     sad_diff = np.sum(np.abs(predict - alpha))/1000
-    if pixel==0:
-        pixel = trimap.shape[0]*trimap.shape[1]-float((trimap==255).sum())-float((trimap==0).sum())
+    if pixel == 0:
+        pixel = trimap.shape[0]*trimap.shape[1] - \
+            float((trimap == 255).sum())-float((trimap == 0).sum())
     mse_diff = np.sum((predict - alpha) ** 2)/pixel
     mad_diff = np.sum(np.abs(predict - alpha))/pixel
+
     return sad_diff, mse_diff, mad_diff
-    
+
+
 def calculate_sad_mse_mad_whole_img(predict, alpha):
     pixel = predict.shape[0]*predict.shape[1]
     sad_diff = np.sum(np.abs(predict - alpha))/1000
     mse_diff = np.sum((predict - alpha) ** 2)/pixel
     mad_diff = np.sum(np.abs(predict - alpha))/pixel
-    return sad_diff, mse_diff, mad_diff	
+
+    return sad_diff, mse_diff, mad_diff
+
 
 def calculate_sad_fgbg(predict, alpha, trimap):
     sad_diff = np.abs(predict-alpha)
     weight_fg = np.zeros(predict.shape)
     weight_bg = np.zeros(predict.shape)
     weight_trimap = np.zeros(predict.shape)
-    weight_fg[trimap==255] = 1.
-    weight_bg[trimap==0  ] = 1.
-    weight_trimap[trimap==128  ] = 1.
+    weight_fg[trimap == 255] = 1.
+    weight_bg[trimap == 0] = 1.
+    weight_trimap[trimap == 128] = 1.
     sad_fg = np.sum(sad_diff*weight_fg)/1000
     sad_bg = np.sum(sad_diff*weight_bg)/1000
     sad_trimap = np.sum(sad_diff*weight_trimap)/1000
+
     return sad_fg, sad_bg
+
 
 def compute_gradient_whole_image(pd, gt):
     from scipy.ndimage import gaussian_filter
@@ -116,7 +136,9 @@ def compute_gradient_whole_image(pd, gt):
 
     error_map = np.square(pd_mag - gt_mag)
     loss = np.sum(error_map) / 10
+
     return loss
+
 
 def compute_connectivity_loss_whole_image(pd, gt, step=0.1):
     from scipy.ndimage import morphology
@@ -139,7 +161,7 @@ def compute_connectivity_loss_whole_image(pd, gt, step=0.1):
         omega[coords[:, 0], coords[:, 1]] = 1
         flag = (l_map == -1) & (omega == 0)
         l_map[flag == 1] = thresh_steps[i-1]
-        dist_maps = morphology.distance_transform_edt(omega==0)
+        dist_maps = morphology.distance_transform_edt(omega == 0)
         dist_maps = dist_maps / dist_maps.max()
     l_map[l_map == -1] = 1
     d_pd = pd - l_map
@@ -147,4 +169,5 @@ def compute_connectivity_loss_whole_image(pd, gt, step=0.1):
     phi_pd = 1 - d_pd * (d_pd >= 0.15).astype(np.float32)
     phi_gt = 1 - d_gt * (d_gt >= 0.15).astype(np.float32)
     loss = np.sum(np.abs(phi_pd - phi_gt)) / 1000
+
     return loss
