@@ -27,7 +27,7 @@ To use our pretrained models, download them from [google drive](https://drive.go
 
 
 ## How to run StyleMatteGan
-To synthesize synthetic dataset of RGBA images, go to `stylegan3` and run `synthesize.py`. You should create conda environment from `stylegan3/environment.yml`. You can also generate images with different truncation and seed values using `gen_images.py` .
+To synthesize synthetic dataset of RGBA images, move to `stylegan3` and run `synthesize.py`. You should create conda environment from `stylegan3/environment.yml`. You can also generate images with different truncation and seed values using `gen_images.py` .
 
 ```bash
 conda activate stylegan3
@@ -35,28 +35,26 @@ cd stylegan3
 python synthesize.py
 ```
 
-The reports will be written into `stylematte/report/` directory. See report examples there.
-
 To change image background on synthetic dataset, run 
 ```bash
 python visualizer.py
 ```
 
-It will run GUI where you can choose model weights, background and other running parameters. Below are shown samples with given background.
+In the GUI you can choose model weights, background picture, truncation value and other visualization parameters. Below are shown samples with given background.
 
 <p align="left">
   <img src="assets/back.gif" width="60%" height="60%" />
 </p><br/>
 
 ## How to run StyleMatte
-To test our model, go to `stylematte` and run `test.py`. You can modify `test.yaml` file for your datasets and models.
+To test our model, change directory to `stylematte` and run `test.py`. You can modify `test.yaml` file for your datasets and models.
 
 ```bash
 cd stylematte
 python test.py
 ```
 
-The reports will be written into `stylematte/report/` directory. See report examples there.
+The report directory is `stylematte/report/`. See report examples there.
 
 ## <a name="CitingStyleMatte"></a>Citing StyleMatte
 
