@@ -10,16 +10,10 @@
   <img src="assets/merged.gif" width="100%" height="50%" />
 </p><br/>
 
-<!-- <div align="center">
-  <img src="stylegan3/imgs/fg.gif)" width="100" />
-  <img src="stylegan3/imgs/matte.gif)" width="100" /> 
-</div> -->
-<!-- ![demo](stylegan3/imgs/fg.gif)  ![demo](stylegan3/imgs/matte.gif) -->
-
 
 ## Model Zoo and Baselines
 
-To use our pretrained models, download them from [gdrive](https://drive.google.com/drive/folders/1mptFt_Mwl3UfQd-cyxsxRl-8tcYFnhLT). 
+To use our pretrained models, download them from [google drive](https://drive.google.com/drive/folders/1mptFt_Mwl3UfQd-cyxsxRl-8tcYFnhLT). 
 
 
 | State file                           | Size     | Where to place                                   |
@@ -43,6 +37,16 @@ python synthesize.py
 
 The reports will be written into `stylematte/report/` directory. See report examples there.
 
+To change image background on synthetic dataset, run 
+```bash
+python visualizer.py
+```
+
+It will run GUI where you can choose model weights, background and other running parameters. Below are shown samples with given background.
+
+<p align="left">
+  <img src="assets/back.gif" width="60%" height="60%" />
+</p><br/>
 
 ## How to run StyleMatte
 To test our model, go to `stylematte` and run `test.py`. You can modify `test.yaml` file for your datasets and models.

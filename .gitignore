@@ -167,6 +167,8 @@ stylematte/checkpoints/*.pth
 stylematte/*.pkl
 stylematte/*.pth
 stylegan3/*.pkl
+.vscode/
+.vscode/*
 imgs
 .DS_Store
 stylegan3/.DS_Store
