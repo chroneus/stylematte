@@ -4,7 +4,8 @@
 
 [Sergei Chicherin](https://github.com/chroneus), [Karen Efremyan](https://github.com/befozg)
 
-[[`arXiv`](https://arxiv.org/abs/2305.02981)] [[`BibTeX`](#CitingStyleMatte)]
+[[`arXiv`](https://arxiv.org/abs/2305.02981)] [[`BibTeX`](#CitingStyleMatte)] [[`Gitlab`](https://gitlab.aicloud.sbercloud.ru/rndcv/stylematte)]
+
 
 <p align="left">
   <img src="assets/merged.gif" width="100%" height="50%" />
