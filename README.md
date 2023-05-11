@@ -8,9 +8,8 @@
 
 
 <p align="left">
-  <img src="assets/merged.gif" width="100%" height="50%" />
+  <img src="assets/swap.gif" width="80%" height="60%" />
 </p><br/>
-
 
 ## Model Zoo and Baselines
 
@@ -38,7 +37,9 @@ To change image background on synthetic dataset, run
 python visualizer.py
 ```
 
-In the GUI you can choose model weights, background picture, truncation value and other visualization parameters. Below are shown samples with given background.
+In the GUI you can choose model weights, background picture, truncation value and other visualization parameters. 
+
+## StyleMatteGAN results
 
 <p align="left">
   <img src="assets/back.gif" width="60%" height="60%" />
@@ -53,6 +54,12 @@ python test.py
 ```
 
 The report directory is `stylematte/report/`. See report examples there.
+
+## StyleMatte results
+
+<p align="left">
+  <img src="assets/merged.gif" width="100%" height="50%" />
+</p><br/>
 
 ## <a name="CitingStyleMatte"></a>Citing StyleMatte
 

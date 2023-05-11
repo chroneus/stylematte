@@ -174,3 +174,5 @@ imgs
 stylegan3/.DS_Store
 stylegan3/imgs/
 stylegan3/out.gif
+assets/back*.jpg
+assets/logo*
