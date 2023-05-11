@@ -13,20 +13,17 @@
 
 ## Model Zoo and Baselines
 
-To use our pretrained models, download them from [google drive](https://drive.google.com/drive/folders/1mptFt_Mwl3UfQd-cyxsxRl-8tcYFnhLT). 
 
-
-| State file                           | Size     | Where to place                                   |
-|-----------------------------------|----------|-------------------------------------------|
-| stylematte_pure.pth    | 133.6 MB  |  `stylematte/checkpoints/`        |
-| stylematte_synth.pth | 133.6 MB  |   `stylematte/checkpoints/` |
-| animals.pkl    | 300.5 MB  |    `stylegan3`      |
-| humans.pkl    | 281.1 MB  |    `stylegan3`      |
-
+| State file                           | Size     | Where to place                                   | Download |
+|-----------------------------------|----------|-------------------------------------------|----|
+| stylematte_pure.pth    | 133.6 MB  |  `stylematte/checkpoints/`        | [stylematte.zip](https://sc.link/lYkM5) |
+| stylematte_synth.pth | 133.6 MB  |   `stylematte/checkpoints/` | [stylematte.zip](https://sc.link/lYkM5) |
+| animals.pkl    | 300.5 MB  |    `stylegan3`      | [stylemattegan.zip](https://sc.link/kRjO5) |
+| humans.pkl    | 281.1 MB  |    `stylegan3`      | [stylemattegan.zip](https://sc.link/kRjO5) |
 
 
 
-## How to run StyleMatteGan
+## How to run StyleMatteGAN
 To synthesize synthetic dataset of RGBA images, move to `stylegan3` and run `synthesize.py`. You should create conda environment from `stylegan3/environment.yml`. You can also generate images with different truncation and seed values using `gen_images.py` .
 
 ```bash
