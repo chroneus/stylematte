@@ -4,11 +4,11 @@
 
 [Sergei Chicherin](https://github.com/chroneus), [Karen Efremyan](https://github.com/befozg)
 
-[[`arXiv`](https://arxiv.org/abs/2305.02981)] [[`BibTeX`](#CitingStyleMatte)] [[`Gitlab`](https://gitlab.aicloud.sbercloud.ru/rndcv/stylematte)]
+[[`arXiv`](https://arxiv.org/abs/2305.02981)] [[`BibTeX`](#CitingStyleMatte)] [[`Gitlab`](https://gitlab.aicloud.sbercloud.ru/rndcv/stylematte)] [[`Demo`](https://huggingface.co/spaces/befozg/stylematte)]
 
 
 <p align="left">
-  <img src="assets/swap.gif" width="80%" height="60%" />
+  <img src="assets/swap.gif" width="70%" height="60%" />
 </p><br/>
 
 ## Model Zoo and Baselines
