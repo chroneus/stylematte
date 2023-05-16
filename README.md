@@ -2,7 +2,6 @@
 
 # StyleMatte: Adversarially-Guided Portrait Matting
 
-[Sergei Chicherin](https://github.com/chroneus), [Karen Efremyan](https://github.com/befozg)
 
 [[`arXiv`](https://arxiv.org/abs/2305.02981)] [[`BibTeX`](#CitingStyleMatte)] [[`Gitlab`](https://gitlab.aicloud.sbercloud.ru/rndcv/stylematte)] [[`Demo`](https://huggingface.co/spaces/befozg/stylematte)]
 
