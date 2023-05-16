@@ -2,7 +2,6 @@
 
 # StyleMatte: Adversarially-Guided Portrait Matting
 
-[Sergei Chicherin](https://github.com/chroneus), [Karen Efremyan](https://github.com/befozg)
 
 [[`arXiv`](https://arxiv.org/abs/2305.02981)] [[`BibTeX`](#CitingStyleMatte)] [[`Gitlab`](https://gitlab.aicloud.sbercloud.ru/rndcv/stylematte)] [[`Demo`](https://huggingface.co/spaces/befozg/stylematte)]
 
@@ -60,16 +59,3 @@ The report directory is `stylematte/report/`. See report examples there.
 <p align="left">
   <img src="assets/merged.gif" width="100%" height="50%" />
 </p><br/>
-
-## <a name="CitingStyleMatte"></a>Citing StyleMatte
-
-If you use StyleMatte in your research or refer to the results published in the paper, please use the following BibTeX entry.
-
-```BibTeX
-@inproceedings{stylematte,
-    title={Adversarially-Guided Portrait Matting}, 
-    author={Sergej Chicherin and Karen Efremyan},
-    journal={arXiv preprint arXiv:2305.02981},
-    year={2023}
-}
-```
