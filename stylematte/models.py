@@ -11,7 +11,7 @@ class StyleMatte(nn.Module):
         self.fpn = FPN_fuse(feature_channels=[256, 256, 256, 256], fpn_out=256)
         self.pixel_decoder = Mask2FormerForUniversalSegmentation.from_pretrained(
             "facebook/mask2former-swin-tiny-coco-instance").base_model.pixel_level_module
-        self.fgf = FastGuidedFilter()
+        self.fgf = FastGuidedFilter(eps=1e-4)
         self.conv = nn.Conv2d(256, 1, kernel_size=3, padding=1)
 
     def forward(self, image, normalize=False):
