@@ -16,10 +16,10 @@
 
 | State file                           | Size     | Where to place                                   | Download |
 |-----------------------------------|----------|-------------------------------------------|----|
-| stylematte_pure.pth    | 133.6 MB  |  `stylematte/checkpoints/`        | [stylematte.zip](https://n-ws-620xz-pd11.s3pd11.sbercloud.ru/b-ws-620xz-pd11-jux/matting/models/stylematte.zip) |
-| stylematte_synth.pth | 133.6 MB  |   `stylematte/checkpoints/` | [stylematte.zip](https://n-ws-620xz-pd11.s3pd11.sbercloud.ru/b-ws-620xz-pd11-jux/matting/models/stylemattegan.zip) |
-| animals.pkl    | 300.5 MB  |    `stylegan3`      | [stylemattegan.zip](https://sc.link/kRjO5) |
-| humans.pkl    | 281.1 MB  |    `stylegan3`      | [stylemattegan.zip](https://sc.link/kRjO5) |
+| stylematte_pure.pth    | 133.6 MB  |  `stylematte/checkpoints/`        | (https://github.com/chroneus/stylematte/releases/download/weights/stylematte_pure.pth) |
+| stylematte_synth.pth | 133.6 MB  |   `stylematte/checkpoints/` | (https://github.com/chroneus/stylematte/releases/download/weights/stylematte_synth.pth)|
+| animals.pkl    | 300.5 MB  |    `stylegan3`      | (https://github.com/chroneus/stylematte/releases/download/weights/animals.pkl) |
+| humans.pkl    | 281.1 MB  |    `stylegan3`      | (https://github.com/chroneus/stylematte/releases/download/weights/humans.pkl) |
 
 
 
